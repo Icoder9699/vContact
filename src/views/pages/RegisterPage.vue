@@ -44,6 +44,7 @@ import FormInput from "@/components/UI/FormInput.vue";
 import samePasswordValidation from "@/utils/functions/samePasswordValidation";
 import emailValidation from "@/utils/functions/emailValidation";
 import { useToast } from "vue-toastification";
+import { useAuthStore } from "@/store/useAuthStore";
 
 interface IFormData {
   email: string;
@@ -51,6 +52,7 @@ interface IFormData {
   passwordConfirmation: string;
 }
 const toast = useToast();
+const authStore = useAuthStore();
 const formData = reactive<IFormData>({
   email: "",
   password: "",
@@ -87,15 +89,13 @@ const onSubmitForm = () => {
   )
     .then((userCredential) => {
       const user = userCredential.user;
-      console.log(user);
+      //@ts-ignore
+      authStore.login(user);
     })
     .catch((error) => {
       toast.error(error.message, {
         timeout: 2000,
       });
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
     });
 };
 </script>

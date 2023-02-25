@@ -7,7 +7,7 @@
         label="Email"
         id="email"
         v-model:value="formData.email"
-        :errorMessage="emailErrorMessage"
+        :errorMessage="isValidEmail ? '' : 'invalid Email'"
       />
       <FormInput
         class="form__item"
@@ -19,32 +19,64 @@
       <router-link class="form__link" :to="{ name: 'auth.registration' }">
         Registration
       </router-link>
-      <button class="form__button button-primary" type="submit">Submit</button>
+      <button
+        class="form__button button-primary"
+        type="submit"
+        :disabled="!isFormValid"
+      >
+        Submit
+      </button>
     </form>
   </div>
 </template>
 
 <script setup lang="ts">
 import FormInput from "@/components/UI/FormInput.vue";
+import { authFirebase } from "@/firebaseConfig";
 import emailValidation from "@/utils/functions/emailValidation";
 import { computed } from "@vue/reactivity";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { reactive } from "vue";
+import { useToast } from "vue-toastification";
+import { useAuthStore } from "@/store/useAuthStore";
 
 interface IFormData {
   email: string;
   password: string;
 }
 
+const toast = useToast();
+const authStore = useAuthStore();
+
 const formData = reactive<IFormData>({
   email: "",
   password: "",
 });
 
-const emailErrorMessage = computed(() => {
-  return emailValidation(formData.email) ? "" : "Invalid email!";
+const isValidEmail = computed(() => {
+  return emailValidation(formData.email);
 });
 
-const onSubmitForm = () => {};
+const isFormValid = computed(() => {
+  if (formData.email.length && formData.password.length) {
+    return isValidEmail.value;
+  }
+  return false;
+});
+
+const onSubmitForm = () => {
+  signInWithEmailAndPassword(authFirebase, formData.email, formData.password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      // @ts-ignore
+      authStore.login(user)
+    })
+    .catch((error) => {
+      toast.error(error.message, {
+        timeout: 1000,
+      });
+    });
+};
 </script>
 
 <style scoped lang="scss">
