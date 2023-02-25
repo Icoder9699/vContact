@@ -7,6 +7,7 @@
         label="Email"
         id="email"
         v-model:value="formData.email"
+        :errorMessage="emailErrorMessage"
       />
       <FormInput
         class="form__item"
@@ -25,6 +26,8 @@
 
 <script setup lang="ts">
 import FormInput from "@/components/UI/FormInput.vue";
+import emailValidation from "@/utils/functions/emailValidation";
+import { computed } from "@vue/reactivity";
 import { reactive } from "vue";
 
 interface IFormData {
@@ -37,9 +40,11 @@ const formData = reactive<IFormData>({
   password: "",
 });
 
+const emailErrorMessage = computed(() => {
+  return emailValidation(formData.email) ? "" : "Invalid email!";
+});
+
 const onSubmitForm = () => {};
-
-
 </script>
 
 <style scoped lang="scss">
@@ -57,7 +62,8 @@ const onSubmitForm = () => {};
       input {
         width: 100%;
       }
-      margin-bottom: 15px;
+
+      margin-bottom: 5px;
     }
 
     &__link {

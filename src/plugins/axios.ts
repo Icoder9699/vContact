@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_URL } from "@/utils/constants";
+import { BASE_URL } from "@/utils/constants/constants";
 
 export const ContentType = () => ({
   "Content-Language": "RU",
@@ -10,7 +10,7 @@ const instanse = axios.create({
   headers: ContentType(),
 });
 
-const handleRequest = (config:any) => {
+const handleRequest = (config: any) => {
   return config;
 };
 

@@ -16,7 +16,9 @@ input {
   outline: none;
   border: 1px solid $gray;
   border-radius: $rounded-sm;
+  padding: 10px 5px;
   @include transition();
+
   &:focus {
     border-color: $primary;
   }
@@ -34,8 +36,16 @@ a {
   background: $primary;
   color: $light;
   @include transition();
-  padding: 10px;
+  padding: 12px;
+
   &:disabled {
     background: $gray;
   }
+}
+
+
+.error {
+  color: $error;
+  font-size: 12px;
+  font-weight: 700;
 }

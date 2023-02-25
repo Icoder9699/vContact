@@ -7,6 +7,7 @@
       :id="id"
       @input="onUpdateInputValue"
     />
+    <p class="error">&nbsp;{{ errorMessage }}</p>
   </div>
 </template>
 
@@ -15,6 +16,7 @@ defineProps<{
   label?: string;
   id: string;
   type?: string;
+  errorMessage?: string;
 }>();
 
 const emit = defineEmits<{
@@ -35,7 +37,6 @@ const onUpdateInputValue = (e: Event) => {
 
   &__input {
     width: 100%;
-    padding: 10px 5px;
   }
 }
 </style>
