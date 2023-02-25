@@ -36,7 +36,7 @@ const onUpdateInputValue = (e: Event) => {
 .form-input {
   &__label {
     display: block;
-    bottom: 5px;
+    margin-bottom: 5px;
   }
 
   &__input {

@@ -35,8 +35,7 @@
 <script setup lang="ts">
 import GroupAdd from "@/components/GroupAdd.vue";
 import FormInput from "@/components/UI/FormInput.vue";
-import emailValidation from "@/utils/functions/emailValidation";
-import { reactive, computed } from "vue";
+import { reactive } from "vue";
 
 interface IContactData {
   fio: string;
@@ -67,7 +66,6 @@ const handleGetGroupTags = (array: any): any => {
 
   &__form {
     width: 500px;
-    margin: auto;
 
     &-select {
       margin-bottom: 10px;
