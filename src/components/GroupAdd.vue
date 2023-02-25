@@ -51,10 +51,15 @@ const onAddGroup = () => {
 
   &__item {
     width: 80%;
+    input {
+      padding: 50px !important;
+      border-radius: $rounded-sm 0 0 $rounded-sm !important;
+    }
   }
 
   &__button {
     width: 20%;
+    margin-top: 4px;
     border-radius: 0 $rounded-sm $rounded-sm 0;
   }
 

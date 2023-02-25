@@ -2,6 +2,7 @@
   <div class="form-input">
     <label class="form-input__label" :for="id">{{ label }}</label>
     <input
+      v-maska="mask"
       :value="defaultValue"
       class="form-input__input"
       :type="type || 'text'"
@@ -18,7 +19,8 @@ defineProps<{
   id: string;
   type?: string;
   errorMessage?: string;
-  defaultValue?: string
+  defaultValue?: string;
+  mask?: string;
 }>();
 
 const emit = defineEmits<{

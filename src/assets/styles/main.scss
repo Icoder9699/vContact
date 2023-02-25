@@ -25,7 +25,8 @@ input {
   @include transition();
 
   &:focus {
-    border-color: $primary;
+    border-color: transparent;
+    box-shadow: 0 0 2px $primary;
   }
 }
 
@@ -46,6 +47,12 @@ select {
 a {
   display: block;
   text-decoration: none;
+  color: $dark;
+}
+
+.router-link-active {
+  font-weight: 700;
+  color: $primary !important;
 }
 
 .button-primary {

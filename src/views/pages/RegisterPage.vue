@@ -7,6 +7,7 @@
         label="Email"
         id="email"
         v-model:value="formData.email"
+        :defaultValue="formData.email"
         :errorMessage="isValidEmail ? '' : 'invalid Email'"
       />
       <FormInput
@@ -15,6 +16,7 @@
         id="password"
         type="password"
         v-model:value="formData.password"
+        :defaultValue="formData.password"
         :errorMessage="isTheSamePasswords ? '' : 'Not the same passswords!'"
       />
       <FormInput
@@ -23,6 +25,7 @@
         id="passwordConfirmation"
         type="password"
         v-model:value="formData.passwordConfirmation"
+        :defaultValue="formData.passwordConfirmation"
         :errorMessage="isTheSamePasswords ? '' : 'Not the same passswords!'"
       />
       <button

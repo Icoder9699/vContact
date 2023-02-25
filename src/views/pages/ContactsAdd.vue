@@ -1,40 +1,42 @@
 <template>
-  <div class="contacts-add">
+  <section class="contacts-add">
     <div class="contacts-add__container container">
       <form class="contacts-add__form">
         <h1 class="contacts-add__title">Add contact</h1>
         <FormInput
           class="contacts-add__form-item"
           label="Full name"
-          id="email"
-          v-model:value="conctactData.fio"
-          :defaultValue="conctactData.fio"
+          id="fio"
+          v-model:value="contactData.fio"
+          :defaultValue="contactData.fio"
         />
         <FormInput
           class="contacts-add__form-item"
           label="Phone number"
-          id="email"
-          v-model:value="conctactData.phone"
-          :defaultValue="conctactData.phone"
+          id="phone"
+          :mask="'+998 ## ### ## ##'"
+          v-model:value="contactData.phone"
+          :defaultValue="contactData.phone"
         />
         <FormInput
           class="contacts-add__form-item"
           label="Email"
           id="email"
-          v-model:value="conctactData.email"
-          :defaultValue="conctactData.email"
+          v-model:value="contactData.email"
+          :defaultValue="contactData.email"
         />
         <GroupAdd @getGroupTags="handleGetGroupTags" />
         <button class="contacts-add__form-button button-primary">Add</button>
       </form>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
 import GroupAdd from "@/components/GroupAdd.vue";
 import FormInput from "@/components/UI/FormInput.vue";
-import { reactive } from "vue";
+import emailValidation from "@/utils/functions/emailValidation";
+import { reactive, computed } from "vue";
 
 interface IContactData {
   fio: string;
@@ -43,7 +45,7 @@ interface IContactData {
   groups: string[];
 }
 
-const conctactData = reactive<IContactData>({
+const contactData = reactive<IContactData>({
   fio: "",
   phone: "",
   email: "",
@@ -51,7 +53,7 @@ const conctactData = reactive<IContactData>({
 });
 
 const handleGetGroupTags = (array: any): any => {
-  conctactData.groups = array;
+  contactData.groups = array;
 };
 </script>
 
@@ -61,7 +63,6 @@ const handleGetGroupTags = (array: any): any => {
 
   &__title {
     margin-bottom: 20px;
-    text-align: center;
   }
 
   &__form {

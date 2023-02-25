@@ -2,13 +2,30 @@
   <div class="login">
     <form class="login__form" @submit.prevent="onSubmitForm">
       <h1 class="form__title">Login</h1>
-      <FormInput class="form__item" label="Email" id="email" v-model:value="formData.email"
-        :errorMessage="isValidEmail ? '' : 'invalid Email'" />
-      <FormInput class="form__item" label="Password" id="password" type="password" v-model:value="formData.password" />
+      <FormInput
+        class="form__item"
+        label="Email"
+        id="email"
+        v-model:value="formData.email"
+        :errorMessage="isValidEmail ? '' : 'invalid Email'"
+        :defaultValue="formData.email"
+      />
+      <FormInput
+        class="form__item"
+        label="Password"
+        id="password"
+        type="password"
+        v-model:value="formData.password"
+        :defaultValue="formData.password"
+      />
       <router-link class="form__link" :to="{ name: 'auth.registration' }">
         Registration
       </router-link>
-      <button class="form__button button-primary" type="submit" :disabled="!isFormValid">
+      <button
+        class="form__button button-primary"
+        type="submit"
+        :disabled="!isFormValid"
+      >
         Submit
       </button>
     </form>
@@ -55,8 +72,8 @@ const onSubmitForm = () => {
     .then((userCredential) => {
       const user = userCredential.user;
       // @ts-ignore
-      authStore.login(user)
-      router.push({ name: 'contacts' })
+      authStore.login(user);
+      router.push({ name: "contacts" });
     })
     .catch((error) => {
       toast.error(error.message, {
