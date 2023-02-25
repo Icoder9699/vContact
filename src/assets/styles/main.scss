@@ -12,6 +12,11 @@ body {
   position: relative;
 }
 
+.row {
+  display: flex;
+  align-items: center;
+}
+
 input {
   outline: none;
   border: 1px solid $gray;
@@ -22,6 +27,20 @@ input {
   &:focus {
     border-color: $primary;
   }
+}
+
+select {
+  width: 100%;
+  outline: none;
+  border: 1px solid $gray;
+  border-radius: $rounded-sm;
+  padding: 10px 5px;
+  @include transition();
+
+  &:focus {
+    border-color: $primary;
+  }
+
 }
 
 a {
@@ -36,7 +55,7 @@ a {
   background: $primary;
   color: $light;
   @include transition();
-  padding: 12px;
+  padding: 10px;
 
   &:disabled {
     cursor: not-allowed;

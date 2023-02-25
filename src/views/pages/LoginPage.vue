@@ -2,28 +2,13 @@
   <div class="login">
     <form class="login__form" @submit.prevent="onSubmitForm">
       <h1 class="form__title">Login</h1>
-      <FormInput
-        class="form__item"
-        label="Email"
-        id="email"
-        v-model:value="formData.email"
-        :errorMessage="isValidEmail ? '' : 'invalid Email'"
-      />
-      <FormInput
-        class="form__item"
-        label="Password"
-        id="password"
-        type="password"
-        v-model:value="formData.password"
-      />
+      <FormInput class="form__item" label="Email" id="email" v-model:value="formData.email"
+        :errorMessage="isValidEmail ? '' : 'invalid Email'" />
+      <FormInput class="form__item" label="Password" id="password" type="password" v-model:value="formData.password" />
       <router-link class="form__link" :to="{ name: 'auth.registration' }">
         Registration
       </router-link>
-      <button
-        class="form__button button-primary"
-        type="submit"
-        :disabled="!isFormValid"
-      >
+      <button class="form__button button-primary" type="submit" :disabled="!isFormValid">
         Submit
       </button>
     </form>
@@ -39,6 +24,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { reactive } from "vue";
 import { useToast } from "vue-toastification";
 import { useAuthStore } from "@/store/useAuthStore";
+import router from "@/routes";
 
 interface IFormData {
   email: string;
@@ -70,6 +56,7 @@ const onSubmitForm = () => {
       const user = userCredential.user;
       // @ts-ignore
       authStore.login(user)
+      router.push({ name: 'contacts' })
     })
     .catch((error) => {
       toast.error(error.message, {

@@ -2,6 +2,7 @@
   <div class="form-input">
     <label class="form-input__label" :for="id">{{ label }}</label>
     <input
+      :value="defaultValue"
       class="form-input__input"
       :type="type || 'text'"
       :id="id"
@@ -17,6 +18,7 @@ defineProps<{
   id: string;
   type?: string;
   errorMessage?: string;
+  defaultValue?: string
 }>();
 
 const emit = defineEmits<{
