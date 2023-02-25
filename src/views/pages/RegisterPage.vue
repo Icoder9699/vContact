@@ -7,7 +7,7 @@
         label="Email"
         id="email"
         v-model:value="formData.email"
-        :errorMessage="emailErrorMessage"
+        :errorMessage="isValidEmail ? '' : 'invalid Email'"
       />
       <FormInput
         class="form__item"
@@ -15,7 +15,7 @@
         id="password"
         type="password"
         v-model:value="formData.password"
-        :errorMessage="passwordErrorMessage"
+        :errorMessage="isTheSamePasswords ? '' : 'Not the same passswords!'"
       />
       <FormInput
         class="form__item"
@@ -23,45 +23,81 @@
         id="passwordConfirmation"
         type="password"
         v-model:value="formData.passwordConfirmation"
-        :errorMessage="passwordErrorMessage"
+        :errorMessage="isTheSamePasswords ? '' : 'Not the same passswords!'"
       />
-      <button class="form__button button-primary" type="submit">Submit</button>
+      <button
+        class="form__button button-primary"
+        type="submit"
+        :disabled="!isFormValid"
+      >
+        Submit
+      </button>
     </form>
   </div>
 </template>
   
 <script setup lang="ts">
 import { reactive, computed } from "vue";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { authFirebase } from "@/firebaseConfig";
 import FormInput from "@/components/UI/FormInput.vue";
 import samePasswordValidation from "@/utils/functions/samePasswordValidation";
 import emailValidation from "@/utils/functions/emailValidation";
+import { useToast } from "vue-toastification";
 
 interface IFormData {
   email: string;
   password: string;
   passwordConfirmation: string;
 }
-
+const toast = useToast();
 const formData = reactive<IFormData>({
   email: "",
   password: "",
   passwordConfirmation: "",
 });
 
-const emailErrorMessage = computed(() => {
-  return emailValidation(formData.email) ? "" : "Invalid email!";
+const isValidEmail = computed(() => {
+  return emailValidation(formData.email);
 });
 
-const passwordErrorMessage = computed(() => {
+const isTheSamePasswords = computed(() => {
   return samePasswordValidation(
     formData.password,
     formData.passwordConfirmation
-  )
-    ? ""
-    : "Not same passwords!";
+  );
 });
 
-const onSubmitForm = () => {};
+const isFormValid = computed(() => {
+  if (
+    formData.email.length &&
+    formData.password.length &&
+    formData.passwordConfirmation
+  ) {
+    return isValidEmail.value && isTheSamePasswords.value;
+  }
+  return false;
+});
+
+const onSubmitForm = () => {
+  createUserWithEmailAndPassword(
+    authFirebase,
+    formData.email,
+    formData.password
+  )
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log(user);
+    })
+    .catch((error) => {
+      toast.error(error.message, {
+        timeout: 2000,
+      });
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+    });
+};
 </script>
   
 <style scoped lang="scss">

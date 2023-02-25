@@ -39,7 +39,9 @@ a {
   padding: 12px;
 
   &:disabled {
+    cursor: not-allowed;
     background: $gray;
+    border-color: $gray;
   }
 }
 
