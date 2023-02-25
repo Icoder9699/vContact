@@ -9,5 +9,15 @@ export default defineConfig({
     alias: {
       "@": resolve(__dirname, "src")
     }
-  }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+        @use "@/assets/styles/_mixins.scss" as *;
+        @use "@/assets/styles/_variables.scss" as *;
+        `,
+      }
+    }
+  },
 })

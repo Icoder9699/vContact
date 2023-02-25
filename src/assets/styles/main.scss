@@ -1,0 +1,41 @@
+*,
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  position: relative;
+}
+
+input {
+  outline: none;
+  border: 1px solid $gray;
+  border-radius: $rounded-sm;
+  @include transition();
+  &:focus {
+    border-color: $primary;
+  }
+}
+
+a {
+  display: block;
+  text-decoration: none;
+}
+
+.button-primary {
+  cursor: pointer;
+  border: 1px solid $primary;
+  border-radius: $rounded-sm;
+  background: $primary;
+  color: $light;
+  @include transition();
+  padding: 10px;
+  &:disabled {
+    background: $gray;
+  }
+}

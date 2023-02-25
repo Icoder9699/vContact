@@ -1,0 +1,5 @@
+
+@mixin transition($element: all, $duration: 300ms, $type: linear) {
+  transition: $element $duration $type; 
+  @content;
+}

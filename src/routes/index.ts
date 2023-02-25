@@ -10,10 +10,12 @@ const router = createRouter({
     {
       path: "/auth/login",
       component: LoginPage,
+      name: 'auth.login'
     },
     {
       path: "/auth/registration",
       component: RegisterPage,
+      name: 'auth.registration'
     },
   ],
 });
