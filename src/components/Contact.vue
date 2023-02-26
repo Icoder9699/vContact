@@ -3,8 +3,10 @@
     <div class="contact__row row">
       <strong>1. &nbsp;</strong>
       <div class="contact__info">
-        <p><strong>Azizbek Karimjonov Ma'rufjon o'gli</strong></p>
-        <p>+998974847838</p>
+        <p>
+          <strong>{{ contact.fio }}</strong>
+        </p>
+        <p>{{ contact.phone }}</p>
       </div>
       <input class="contact__check" type="checkbox" />
     </div>
@@ -12,6 +14,9 @@
 </template>
 
 <script setup lang="ts">
+defineProps<{
+  contact: any;
+}>();
 </script>
 
 <style scoped lang="scss">
@@ -30,6 +35,5 @@
     accent-color: green;
     color: $light;
   }
-
 }
 </style>

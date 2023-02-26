@@ -1,0 +1,10 @@
+{
+  "contacts": [
+    {
+      "id": 1,
+      "fio": "Alex Kenty",
+      "phone": "+99897000000"
+    }
+  ],
+  "groups": [{ "id": 1, "name": "family" }]
+}

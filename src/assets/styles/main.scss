@@ -7,6 +7,10 @@ body {
   font-family: monospace;
 }
 
+p,a {
+  font-size: 14px;
+}
+
 .container {
   max-width: 1240px;
   margin: 0 auto;
@@ -42,7 +46,6 @@ select {
   &:focus {
     border-color: $primary;
   }
-
 }
 
 a {
@@ -71,7 +74,6 @@ a {
     border-color: $gray;
   }
 }
-
 
 .error {
   color: $error;

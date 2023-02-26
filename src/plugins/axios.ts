@@ -1,13 +1,12 @@
+import { API_URL } from '@/utils/constants/constants';
 import axios from "axios";
-import { BASE_URL } from "@/utils/constants/constants";
-
 
 export const ContentType = () => ({
   "Content-Language": "RU",
 });
 
-const instanse = axios.create({
-  baseURL: BASE_URL,
+const api = axios.create({
+  baseURL: API_URL,
   headers: ContentType(),
 });
 
@@ -24,14 +23,14 @@ const handleError = (err: any) => {
   return err;
 };
 
-instanse.interceptors.request.use(
+api.interceptors.request.use(
   (req) => handleRequest(req),
   (err) => handleError(err)
 );
 
-instanse.interceptors.response.use(
+api.interceptors.response.use(
   (res) => handleResponse(res),
   (err) => handleError(err)
 );
 
-export default instanse;
+export default api;
