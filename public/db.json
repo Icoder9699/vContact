@@ -2,9 +2,74 @@
   "contacts": [
     {
       "id": 1,
-      "fio": "Alex Kenty",
-      "phone": "+99897000000"
+      "fio": "Test test",
+      "phone": "+998 97 123 12 54",
+      "groups": [],
+      "email": "test@test.ru"
+    },
+    {
+      "fio": "test test",
+      "phone": "+998 12 312 31 23",
+      "email": "123123",
+      "groups": [
+        {
+          "id": 2,
+          "title": "Friends"
+        },
+        {
+          "id": 3,
+          "title": "Classmates"
+        }
+      ],
+      "id": 2
+    },
+    {
+      "fio": "test test",
+      "phone": "+998 12 312 31 23",
+      "email": "123123",
+      "groups": [
+        {
+          "id": 2,
+          "title": "Friends"
+        },
+        {
+          "id": 3,
+          "title": "Classmates"
+        }
+      ],
+      "id": 3
+    },
+    {
+      "fio": "Test",
+      "phone": "+998 13 132 12 31",
+      "email": "asddadsas",
+      "groups": [
+        {
+          "id": 3,
+          "title": "Classmates"
+        }
+      ],
+      "id": 4
+    },
+    {
+      "fio": "",
+      "phone": "+998 12 312 12 12",
+      "email": "",
+      "groups": [],
+      "id": 5
+    },
+    {
+      "fio": "311",
+      "phone": "",
+      "email": "",
+      "groups": [],
+      "id": 6
     }
   ],
-  "groups": [{ "id": 1, "name": "family" }]
+  "groups": [
+    {
+      "id": 1,
+      "title": "Family"
+    }
+  ]
 }

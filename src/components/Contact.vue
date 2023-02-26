@@ -1,13 +1,24 @@
 <template>
   <div class="contact">
     <div class="contact__row row">
-      <strong>1. &nbsp;</strong>
-      <div class="contact__info">
+      <strong>{{ contact.id }}. &nbsp;</strong>
+      <div
+        class="contact__info"
+        @click="
+          $router.push({ name: 'contacts.edit', params: { id: contact.id } })
+        "
+      >
         <p>
-          <strong>{{ contact.fio }}</strong>
+          <strong>Full name: </strong>
+          {{ contact.fio }}
         </p>
-        <p>{{ contact.phone }}</p>
+        <p><strong>Phone number: </strong>{{ contact.phone }}</p>
       </div>
+      <p class="contact__tags">
+        <span v-for="group in contact.groups" class="group-tag">{{
+          group.title
+        }}</span>
+      </p>
       <input class="contact__check" type="checkbox" />
     </div>
   </div>
@@ -22,7 +33,6 @@ defineProps<{
 <style scoped lang="scss">
 .contact {
   cursor: pointer;
-  width: 400px;
   border: 1px solid $primary;
   padding: 20px 10px;
   border-radius: $rounded-sm;
@@ -34,6 +44,20 @@ defineProps<{
     width: 18px;
     accent-color: green;
     color: $light;
+  }
+
+  &__tags {
+    margin-left: auto;
+  }
+  .group-tag {
+    font-size: 10px;
+    padding: 5px;
+    border: 1px solid $primary;
+    border-radius: $rounded-sm;
+    margin-right: 10px;
+    &:nth-last-child(1) {
+      margin-right: 0;
+    }
   }
 }
 </style>

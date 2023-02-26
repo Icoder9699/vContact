@@ -32,7 +32,7 @@ const router = createRouter({
       name: 'contacts.add'
     },
     {
-      path: "/contacts/add/:id",
+      path: "/contacts/edit/:id",
       component: ContactsEdit,
       name: 'contacts.edit'
     },

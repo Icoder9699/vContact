@@ -1,7 +1,7 @@
 <template>
   <section class="contacts-add">
     <div class="contacts-add__container container">
-      <form class="contacts-add__form">
+      <form class="contacts-add__form" @submit.prevent="onContractAdd">
         <h1 class="contacts-add__title">Add contact</h1>
         <FormInput
           class="contacts-add__form-item"
@@ -25,7 +25,11 @@
           v-model:value="contactData.email"
           :defaultValue="contactData.email"
         />
-        <GroupAdd @getGroupTags="handleGetGroupTags" />
+        <GroupAdd
+          @getSelectedGroup="handleGetSelectedGroup"
+          @removeSelectedGroup="handleRemoveSelectedGroup"
+          :groups="contactData.groups"
+        />
         <button class="contacts-add__form-button button-primary">Add</button>
       </form>
     </div>
@@ -36,14 +40,13 @@
 import GroupAdd from "@/components/GroupAdd.vue";
 import FormInput from "@/components/UI/FormInput.vue";
 import { reactive } from "vue";
+import { IContactData } from "@/utils/types/index";
+import { ContactApi } from "@/api";
+import { useToast } from "vue-toastification";
+import { useRouter } from "vue-router";
 
-interface IContactData {
-  fio: string;
-  phone: string;
-  email: string;
-  groups: string[];
-}
-
+const toast = useToast();
+const router = useRouter();
 const contactData = reactive<IContactData>({
   fio: "",
   phone: "",
@@ -51,22 +54,37 @@ const contactData = reactive<IContactData>({
   groups: [],
 });
 
-const handleGetGroupTags = (array: any): any => {
-  contactData.groups = array;
+const handleGetSelectedGroup = (selectedGroup: any) => {
+  contactData.groups.push(selectedGroup);
+};
+
+const handleRemoveSelectedGroup = (id: any) => {
+  contactData.groups = contactData.groups.filter((group) => group.id != id);
+};
+
+const onContractAdd = async () => {
+  try {
+    contactData.phone.trim();
+    const response = await ContactApi.addContact(contactData);
+    if (response.status === 201) {
+      toast.success("Successfuly added", { timeout: 2000 });
+      router.push("/");
+    }
+  } catch (error) {
+    console.error(error);
+  }
 };
 </script>
 
 <style scoped lang="scss">
 .contacts-add {
-  margin: 50px 0;
+  margin: 20px 0;
 
   &__title {
     margin-bottom: 20px;
   }
 
   &__form {
-    width: 500px;
-
     &-select {
       margin-bottom: 10px;
     }
