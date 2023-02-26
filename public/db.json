@@ -24,7 +24,7 @@
       "id": 2
     },
     {
-      "fio": "test test",
+      "fio": "12",
       "phone": "+998 12 312 31 23",
       "email": "123123",
       "groups": [
@@ -43,19 +43,27 @@
       "fio": "Test",
       "phone": "+998 13 132 12 31",
       "email": "asddadsas",
-      "groups": [
-        {
-          "id": 3,
-          "title": "Classmates"
-        }
-      ],
+      "groups": [],
       "id": 4
     },
     {
       "fio": "",
       "phone": "+998 12 312 12 12",
       "email": "",
-      "groups": [],
+      "groups": [
+        {
+          "id": 1,
+          "title": "Family"
+        },
+        {
+          "id": 2,
+          "title": "Friends"
+        },
+        {
+          "id": 3,
+          "title": "Classmates"
+        }
+      ],
       "id": 5
     },
     {

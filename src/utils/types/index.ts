@@ -1,4 +1,5 @@
 export interface IContactData {
+  id: string | number,
   fio: string;
   phone: string;
   email: string;

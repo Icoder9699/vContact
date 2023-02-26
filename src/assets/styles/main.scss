@@ -72,6 +72,22 @@ a {
   }
 }
 
+.button-error {
+  cursor: pointer;
+  border: 1px solid $error;
+  border-radius: $rounded-sm;
+  background: $error;
+  color: $light;
+  @include transition();
+  padding: 11px;
+
+  &:disabled {
+    cursor: not-allowed;
+    background: $gray;
+    border-color: $gray;
+  }
+}
+
 .error {
   color: $error;
   font-size: 12px;

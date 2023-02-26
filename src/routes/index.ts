@@ -22,7 +22,7 @@ const router = createRouter({
       name: 'auth.registration'
     },
     {
-      path: "/",
+      path: "/contacts",
       component: ContactsList,
       name: 'contacts'
     },
@@ -41,6 +41,10 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const authStore = useAuthStore()
+
+  if (to.path == '/'){
+    next('/contacts')
+  }
 
   if (!authStore.token && to.path == '/') {
     next('/auth/login')

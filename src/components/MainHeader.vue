@@ -23,7 +23,7 @@ const authStore = useAuthStore()
 const navLinks = [
   {
     name: "Main",
-    path: "/",
+    path: "/contacts",
   },
   {
     name: "Add",

@@ -19,7 +19,11 @@
           group.title
         }}</span>
       </p>
-      <input class="contact__check" type="checkbox" />
+      <input
+        class="contact__check"
+        type="checkbox"
+        @change="(e:any) => $emit('onCheckContact', contact.id, e.target.checked)"
+      />
     </div>
   </div>
 </template>
@@ -28,6 +32,8 @@
 defineProps<{
   contact: any;
 }>();
+
+defineEmits(["onCheckContact"]);
 </script>
 
 <style scoped lang="scss">
