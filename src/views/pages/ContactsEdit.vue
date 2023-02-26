@@ -49,6 +49,7 @@ const router = useRouter();
 const toast = useToast();
 
 let contactData = reactive<IContactData>({
+  id: "",
   fio: "",
   phone: "",
   email: "",
