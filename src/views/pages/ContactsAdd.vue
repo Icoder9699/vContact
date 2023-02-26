@@ -48,6 +48,7 @@ import { useRouter } from "vue-router";
 const toast = useToast();
 const router = useRouter();
 const contactData = reactive<IContactData>({
+  id: "",
   fio: "",
   phone: "",
   email: "",
