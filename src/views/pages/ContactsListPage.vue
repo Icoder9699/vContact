@@ -6,7 +6,7 @@
         <h4>Selected Contacts: {{ checkedContactList.length }}</h4>
       </div>
       <div class="contacts-list__row">
-        <Search v-model:value="searchFieldValue" @onSearch="handleOnSearch" />
+        <MySearch v-model:value="searchFieldValue" @onSearch="handleOnSearch" />
         <select class="contracts-list__filter" v-model="filterSelectValue">
           <option :value="null" disabled selected>Select</option>
           <option :value="group.id" v-for="group in GROUP_LIST" :key="group.id">
@@ -16,7 +16,7 @@
       </div>
       <div class="contacts-list__container">
         <template v-if="contactsList">
-          <Contact
+          <MyContact
             v-for="contact in contactsList"
             :key="contact.id"
             :contact="contact"
@@ -35,8 +35,8 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from "vue";
 import { ContactApi, fetchContacts } from "@/api";
-import Contact from "@/components/Contact.vue";
-import Search from "@/components/UI/Search.vue";
+import MyContact from "@/components/MyContact.vue";
+import MySearch from "@/components/UI/MySearch.vue";
 import { IContactData } from "@/utils/types";
 import { GROUP_LIST } from "@/utils/constants/groups";
 

@@ -4,9 +4,7 @@
       <strong>{{ contact.id }}. &nbsp;</strong>
       <div
         class="contact__info"
-        @click="
-          $router.push({ name: 'contacts.edit', params: { id: contact.id } })
-        "
+        @click="$router.push(`contacts/edit/${contact.id}`)"
       >
         <p>
           <strong>Full name: </strong>

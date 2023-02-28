@@ -16,10 +16,10 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthStore } from '@/store/useAuthStore';
-import { useRouter } from 'vue-router';
-const router = useRouter()
-const authStore = useAuthStore()
+import { useAuthStore } from "@/store/useAuthStore";
+import { useRouter } from "vue-router";
+const router = useRouter();
+const authStore = useAuthStore();
 const navLinks = [
   {
     name: "Main",
@@ -32,10 +32,9 @@ const navLinks = [
 ];
 
 const onLogout = () => {
-  authStore.logout()
-  router.push({name: "auth.login"})
-}
-
+  authStore.logout();
+  router.push('/auth/login');
+};
 </script>
 
 <style scoped lang="scss">

@@ -42,16 +42,12 @@ import { reactive } from "vue";
 import { useToast } from "vue-toastification";
 import { useAuthStore } from "@/store/useAuthStore";
 import router from "@/routes";
-
-interface IFormData {
-  email: string;
-  password: string;
-}
+import { IUserData } from "@/utils/types";
 
 const toast = useToast();
 const authStore = useAuthStore();
 
-const formData = reactive<IFormData>({
+const formData = reactive<IUserData>({
   email: "",
   password: "",
 });
@@ -71,9 +67,9 @@ const onSubmitForm = () => {
   signInWithEmailAndPassword(authFirebase, formData.email, formData.password)
     .then((userCredential) => {
       const user = userCredential.user;
-      // @ts-ignore
+      //@ts-ignore
       authStore.login(user);
-      router.push({ name: "contacts" });
+      router.push("/contacts");
     })
     .catch((error) => {
       toast.error(error.message, {

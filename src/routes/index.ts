@@ -1,12 +1,12 @@
-import { useAuthStore } from './../store/useAuthStore';
+import { useAuthStore } from "@/store/useAuthStore";
 import { createRouter, createWebHistory } from "vue-router";
 const routerHistory = createWebHistory();
 
 const LoginPage = () => import("@/views/pages/LoginPage.vue")
 const RegisterPage = () => import("@/views/pages/RegisterPage.vue")
-const ContactsList = () => import('@/views/pages/ContactsList.vue')
-const ContactsEdit = () => import('@/views/pages/ContactsEdit.vue')
-const ContactsAdd = () => import('@/views/pages/ContactsAdd.vue')
+const ContactsListPage = () => import('@/views/pages/ContactsListPage.vue')
+const ContactsEditPage = () => import('@/views/pages/ContactsEditPage.vue')
+const ContactsAddPage = () => import('@/views/pages/ContactsAddPage.vue')
 
 const router = createRouter({
   history: routerHistory,
@@ -14,27 +14,22 @@ const router = createRouter({
     {
       path: "/auth/login",
       component: LoginPage,
-      name: 'auth.login'
     },
     {
       path: "/auth/registration",
       component: RegisterPage,
-      name: 'auth.registration'
     },
     {
       path: "/contacts",
-      component: ContactsList,
-      name: 'contacts'
+      component: ContactsListPage,
     },
     {
       path: "/contacts/add",
-      component: ContactsAdd,
-      name: 'contacts.add'
+      component: ContactsAddPage,
     },
     {
       path: "/contacts/edit/:id",
-      component: ContactsEdit,
-      name: 'contacts.edit'
+      component: ContactsEditPage,
     },
   ],
 });
@@ -42,7 +37,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const authStore = useAuthStore()
 
-  if (to.path == '/'){
+  if (to.path == '/') {
     next('/contacts')
   }
 

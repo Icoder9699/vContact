@@ -10,3 +10,8 @@ export interface IGroup {
   title: string,
   id: string | number
 }
+
+export interface IUserData {
+  email: string;
+  password: string;
+}
