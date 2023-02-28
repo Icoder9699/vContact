@@ -18,7 +18,7 @@
         <template v-if="contactsList">
           <MyContact
             v-for="contact in contactsList"
-            :key="contact.id"
+            :key="contact.id!"
             :contact="contact"
             @onCheckContact="handleOnCheckContact"
           />
@@ -41,7 +41,7 @@ import { IContactData } from "@/utils/types";
 import { GROUP_LIST } from "@/utils/constants/groups";
 
 const contactsList = ref<IContactData[]>([]);
-const checkedContactList = ref<any[]>([]);
+const checkedContactList = ref<number[]>([]);
 const searchFieldValue = ref<string>("");
 const filterSelectValue = ref(null);
 
@@ -77,7 +77,7 @@ const fetchContactList = async () => {
 
 const onRemoveCheckedContacts = () => {
   contactsList.value = contactsList.value.filter((contact) => {
-    if (!checkedContactList.value.includes(contact.id)) {
+    if (!checkedContactList.value.includes(contact.id!)) {
       return contact;
     }
   });
@@ -85,7 +85,7 @@ const onRemoveCheckedContacts = () => {
 };
 
 // remove from front
-const handleOnCheckContact = (checkedContactId: any, checked: boolean) => {
+const handleOnCheckContact = (checkedContactId: number, checked: boolean) => {
   if (checked) {
     checkedContactList.value.push(checkedContactId);
     return;

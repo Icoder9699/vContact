@@ -5,11 +5,11 @@ export const fetchContacts = () => {
   return api.get("/contacts");
 };
 
-export const fetchContactById = (id: any) => {
+export const fetchContactById = (id: number) => {
   return api.get(`/contacts/${id}`);
 };
 
-export const editContactById = (id: any, data: IContactData) => {
+export const editContactById = (id: number, data: IContactData) => {
   return api.patch(`/contacts/${id}`, data);
 };
 
@@ -21,7 +21,7 @@ export const searchContact = (value: string) => {
   return api.get(`/contacts?q=${value}`);
 };
 
-export const filterByGroupId = (groupId: any) => {
+export const filterByGroupId = (groupId: number) => {
   return api.get(`/contacts?contact.groups=${groupId}`)
 }
 

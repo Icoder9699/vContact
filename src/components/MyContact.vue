@@ -20,15 +20,17 @@
       <input
         class="contact__check"
         type="checkbox"
-        @change="(e:any) => $emit('onCheckContact', contact.id, e.target.checked)"
+        @change="(e) => $emit('onCheckContact', contact.id, e.target.checked)"
       />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { IContactData } from "@/utils/types";
+
 defineProps<{
-  contact: any;
+  contact: IContactData;
 }>();
 
 defineEmits(["onCheckContact"]);

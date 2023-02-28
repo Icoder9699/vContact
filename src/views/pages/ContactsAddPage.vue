@@ -48,7 +48,7 @@ import { useRouter } from "vue-router";
 const toast = useToast();
 const router = useRouter();
 const contactData = reactive<IContactData>({
-  id: "",
+  id: null,
   fio: "",
   phone: "",
   email: "",
@@ -59,7 +59,7 @@ const handleGetSelectedGroup = (selectedGroup: any) => {
   contactData.groups.push(selectedGroup);
 };
 
-const handleRemoveSelectedGroup = (id: any) => {
+const handleRemoveSelectedGroup = (id: string | number) => {
   contactData.groups = contactData.groups.filter((group) => group.id != id);
 };
 

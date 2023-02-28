@@ -49,7 +49,7 @@ const router = useRouter();
 const toast = useToast();
 
 let contactData = reactive<IContactData>({
-  id: "",
+  id: null,
   fio: "",
   phone: "",
   email: "",
@@ -62,13 +62,13 @@ const handleGetGroupTags = (selectedGroup: any) => {
   contactData.groups.push(selectedGroup);
 };
 
-const handleRemoveGroup = (id: any) => {
+const handleRemoveGroup = (id: string | number) => {
   contactData.groups = contactData.groups.filter((group) => group.id != id);
 };
 
 const fetchContactById = async () => {
   try {
-    const { data } = await ContactApi.fetchContactById(contactId);
+    const { data } = await ContactApi.fetchContactById(Number(contactId));
     Object.assign(contactData, data);
   } catch (error) {
     console.log(error);
@@ -77,7 +77,7 @@ const fetchContactById = async () => {
 
 const onSubmitForm = async () => {
   try {
-    const response = await ContactApi.editContactById(contactId, contactData);
+    const response = await ContactApi.editContactById(Number(contactId), contactData);
     if (response.status === 200) {
       toast.success("Successfuly edited", { timeout: 2000 });
       router.push("/");

@@ -24,7 +24,7 @@ defineProps<{
 }>();
 
 const emit = defineEmits<{
-  (e: "update:value", value: any): void;
+  (e: "update:value", value: string | number): void;
 }>();
 
 const onUpdateInputValue = (e: Event) => {

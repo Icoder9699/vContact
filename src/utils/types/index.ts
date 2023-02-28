@@ -1,5 +1,5 @@
 export interface IContactData {
-  id: string | number,
+  id: number | null,
   fio: string;
   phone: string;
   email: string;
@@ -8,7 +8,7 @@ export interface IContactData {
 
 export interface IGroup {
   title: string,
-  id: string | number
+  id: number
 }
 
 export interface IUserData {

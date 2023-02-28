@@ -25,19 +25,19 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import FormSelect from "@/components/UI/FormSelect.vue";
-import { IGroup } from "@/utils/types";
+import { IContactData, IGroup } from "@/utils/types";
 
 const emit = defineEmits(["getSelectedGroup", "removeSelectedGroup"]);
 
-const props = defineProps<{
+defineProps<{
   groups?: IGroup[];
 }>();
 
-const selectedGroup = ref();
+const selectedGroup = ref<IContactData | null>();
 
 const onAddGroup = () => {
   emit("getSelectedGroup", selectedGroup.value);
-  selectedGroup.value = "";
+  selectedGroup.value = null;
 };
 
 const onRemoveGroup = (id: string | number) => {
