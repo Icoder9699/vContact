@@ -16,7 +16,7 @@
       </div>
       <div class="contacts-list__container">
         <template v-if="contactsList">
-          <MyContact
+          <ContactCard
             v-for="contact in contactsList"
             :key="contact.id!"
             :contact="contact"
@@ -33,9 +33,9 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch } from "vue";
+import { ref, watch } from "vue";
 import { ContactApi, fetchContacts } from "@/api";
-import MyContact from "@/components/MyContact.vue";
+import ContactCard from "@/components/ContactCard.vue";
 import MySearch from "@/components/UI/MySearch.vue";
 import { IContactData } from "@/utils/types";
 import { GROUP_LIST } from "@/utils/constants/groups";
@@ -66,15 +66,6 @@ const filterByGroup = () => {
   });
 };
 
-const fetchContactList = async () => {
-  try {
-    const response = await fetchContacts();
-    contactsList.value = response.data;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 const onRemoveCheckedContacts = () => {
   contactsList.value = contactsList.value.filter((contact) => {
     if (!checkedContactList.value.includes(contact.id!)) {
@@ -95,19 +86,7 @@ const handleOnCheckContact = (checkedContactId: number, checked: boolean) => {
   );
 };
 
-const handleOnSearch = () => {
-  ContactApi.searchContact(searchFieldValue.value)
-    .then((response) => {
-      contactsList.value = response.data;
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-};
-
-onMounted(() => {
-  fetchContactList();
-});
+const handleOnSearch = () => {};
 </script>
 
 <style scoped lang="scss">

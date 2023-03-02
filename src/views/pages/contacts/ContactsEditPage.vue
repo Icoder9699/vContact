@@ -37,7 +37,6 @@
 </template>
 
 <script setup lang="ts">
-import { ContactApi } from "@/api";
 import GroupAdd from "@/components/GroupAdd.vue";
 import FormInput from "@/components/UI/FormInput.vue";
 import { IContactData } from "@/utils/types";
@@ -66,18 +65,12 @@ const handleRemoveGroup = (id: string | number) => {
   contactData.groups = contactData.groups.filter((group) => group.id != id);
 };
 
-const fetchContactById = async () => {
-  try {
-    const { data } = await ContactApi.fetchContactById(Number(contactId));
-    Object.assign(contactData, data);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 const onSubmitForm = async () => {
   try {
-    const response = await ContactApi.editContactById(Number(contactId), contactData);
+    const response = await ContactApi.editContactById(
+      Number(contactId),
+      contactData
+    );
     if (response.status === 200) {
       toast.success("Successfuly edited", { timeout: 2000 });
       router.push("/");
@@ -86,10 +79,6 @@ const onSubmitForm = async () => {
     console.error(error);
   }
 };
-
-onMounted(() => {
-  fetchContactById();
-});
 </script>
 
 <style scoped lang="scss">

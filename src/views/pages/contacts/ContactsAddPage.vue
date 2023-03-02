@@ -62,19 +62,6 @@ const handleGetSelectedGroup = (selectedGroup: any) => {
 const handleRemoveSelectedGroup = (id: string | number) => {
   contactData.groups = contactData.groups.filter((group) => group.id != id);
 };
-
-const onContractAdd = async () => {
-  try {
-    contactData.phone.trim();
-    const response = await ContactApi.addContact(contactData);
-    if (response.status === 201) {
-      toast.success("Successfuly added", { timeout: 2000 });
-      router.push("/");
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
 </script>
 
 <style scoped lang="scss">
